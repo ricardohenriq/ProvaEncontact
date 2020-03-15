@@ -1,0 +1,3 @@
+cd [Endereço do projeto]
+dotnet ef migrations add [Nome Migraiton]
+dotnet ef database update

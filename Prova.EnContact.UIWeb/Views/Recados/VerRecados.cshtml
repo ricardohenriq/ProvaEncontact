@@ -1,0 +1,35 @@
+﻿@model IList<Agrupamento>
+
+@{
+    var compId = Guid.NewGuid().ToString("N");
+}
+
+@section StyleSheets{
+    <link rel="stylesheet" href="~/css/Recados/Recados.VerRecados.css" />
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="@compId">
+                <div class="tab">
+                    @foreach (var agrupamento in Model)
+                    {
+                        <button class="tablinks" id="@(agrupamento.IdUnico)">@agrupamento.RecadoInicial.Assunto</button>
+                    }
+                </div>
+                @foreach (var agrupamento in Model)
+                {
+                    @Html.DisplayFor(x => agrupamento)
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Recados/Recados.VerRecados.js"></script>
+    <script>
+        new Recados_VerRecados($("#@compId"));
+    </script>
+}

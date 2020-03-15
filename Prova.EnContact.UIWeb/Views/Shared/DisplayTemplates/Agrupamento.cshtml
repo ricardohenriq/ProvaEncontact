@@ -1,0 +1,19 @@
+﻿@model Agrupamento
+
+@{ 
+    var recados = Model.ObtenhaListaDeRecados().Cast<Recado>();
+    var possuiRecadosAgrupados = recados.Count() > 1;
+}
+
+<div id="@(Model.IdUnico)" class="tabcontent">
+    @if (possuiRecadosAgrupados)
+    {
+        <h4>@ConstantesPalavras.RECADO_AGRUPADO</h4>
+        <hr/>
+    }
+
+    @foreach (var recado in recados)
+    {
+        @Html.DisplayFor(x => recado)
+    }
+</div>

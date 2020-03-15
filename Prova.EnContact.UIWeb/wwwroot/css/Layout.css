@@ -1,0 +1,58 @@
+﻿.body-content
+{
+    margin-top:100px;
+}
+
+.navbar {
+    background: #2e2e2e;
+    color: #a0a0a0;
+}
+
+.navbar .navbar-nav li a {
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #b6b6b6;
+    padding: 30px 10px;
+    margin: 0;
+    border-top: 2px solid #2e2e2e;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.navbar .navbar-brand {
+    line-height: 18px;
+    font-weight: 400;
+    font-size: 22px;
+    padding: 30px 10px;
+    margin: 0;
+    font-weight:bold;
+    border-top: 2px solid #2e2e2e;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.navbar .navbar-nav li a:focus,
+.navbar .navbar-nav li a:hover,
+.navbar .navbar-brand,
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus {
+    color: #f55e25;
+}
+
+.recado-label {
+    text-align:right;
+}
+
+@media (max-width: 768px) {
+    .navbar .navbar-brand {
+        padding: 15px 15px;
+    }
+}
