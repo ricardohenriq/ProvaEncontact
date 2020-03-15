@@ -1,0 +1,15 @@
+﻿.btn-laranja {
+    color: #fff;
+    background-color: #f55e25;
+    border-color: #f44c0d;
+}
+
+.btn-laranja:hover {
+    color: #fff;
+}
+
+.titulo-cadastro {
+    color: #f55e25;
+    font-weight:bold;
+    text-transform: uppercase
+}

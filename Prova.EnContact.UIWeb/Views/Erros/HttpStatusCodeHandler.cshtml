@@ -1,0 +1,31 @@
+﻿@section StyleSheets{
+    <link rel="stylesheet" href="~/css/Erros/Erro.css" />
+}
+
+@model DtoErroHttp
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center">
+            <div>
+                <a href="/Home/Index" class="imagem-erro-container link-laranja">
+                    <span class="fs-20x">@Model.CodigoHttp</span>
+                </a>
+            </div>
+            <div>
+                <span class="botao-descricao">@Model.Titulo</span>
+            </div>
+
+            @if (Model.ExibirRequisicaoId)
+            {
+                <p>
+                    <strong>@ConstantesPalavras.ID_REQUISICAO</strong> <code>@Model.RequisicaoId</code>
+                </p>
+            }
+
+            <div>
+                <a href="/Home/Index" class="link-laranja">@ConstantesPalavras.ENCONTACT</a>
+            </div>
+        </div>
+    </div>
+</div>

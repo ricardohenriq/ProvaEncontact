@@ -90,5 +90,19 @@ namespace Prova.EnContact.Servicos.Utilitarios
 
             return recados;
         }
+
+        public static IRecado ObtenhaRecado()
+        {
+            var recado = new Recado
+            {
+                DataCriacao = DateTime.ParseExact("01/01/2019", ConstantesUtilitarios.DATA_PT_BR, CultureInfo.InvariantCulture),
+                Assunto = "Primeiro recado",
+                De = "Fulano",
+                Para = "Ciclano",
+                Mensagem = "Mensagem"
+            };
+
+            return recado;
+        }
     }
 }

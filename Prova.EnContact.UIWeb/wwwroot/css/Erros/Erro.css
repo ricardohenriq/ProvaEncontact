@@ -1,0 +1,30 @@
+﻿.fs-20x {
+    font-size: 20em;
+    text-decoration: none
+}
+
+.botao-descricao {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 2em
+}
+
+.wrapper {
+    margin-top: 80px
+}
+
+.imagem-erro-container,
+.imagem-erro-container:hover,
+.imagem-erro-container:focus,
+.imagem-erro-container:active {
+    color: #f55e25;
+}
+
+.link-laranja,
+.link-laranja:hover,
+.link-laranja:active,
+.link-laranja:focus {
+    color: #f55e25;
+    font-weight: bold;
+    text-decoration: none
+}

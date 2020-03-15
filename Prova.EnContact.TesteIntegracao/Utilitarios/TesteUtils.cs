@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
 using Prova.EnContact.Compartilhado.Utilitarios;
@@ -8,6 +10,8 @@ using Prova.EnContact.Modelos.Modelos;
 using Prova.EnContact.Servicos.Servicos;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Globalization;
 using System.Text;
 
 namespace Prova.EnContact.TesteIntegracao.Utilitarios

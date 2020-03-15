@@ -20,6 +20,8 @@ namespace Prova.EnContact.UIWeb
 {
     public class Program
     {
+        private const string chaveCarregarBancoDeExemploDaProva = "ConfiguracoesDaAplicacao:CarregarBancoDeExemploDaProva";
+
         public static void Main(string[] args)
         {
             try
@@ -31,9 +33,22 @@ namespace Prova.EnContact.UIWeb
                     var services = scope.ServiceProvider;
                     var serviceProvider = services.GetRequiredService<IServiceProvider>();
                     var contexto = serviceProvider.GetRequiredService<ApplicationDbContext>();
-                    contexto.Database.Migrate();
 
-                    //SeedDB.Seed(serviceProvider);
+                    if (contexto.Database.IsSqlServer())
+                    {
+                        contexto.Database.Migrate();
+                    }
+                    else if (contexto.Database.IsSqlite())
+                    {
+                        contexto.Database.EnsureCreated();
+                    }
+
+                    var carregarBancoDeExemploDaProva = services.ObtenhaBoolDasConfiguracoes(chaveCarregarBancoDeExemploDaProva);
+                    if (carregarBancoDeExemploDaProva)
+                    {
+                        contexto.Database.ExecutaDML("DELETE FROM Agrupamentos");
+                        SeedDB.Seed(serviceProvider);
+                    }
                 }
 
                 host.Run();

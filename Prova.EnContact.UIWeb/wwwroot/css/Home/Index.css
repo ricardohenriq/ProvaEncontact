@@ -1,0 +1,18 @@
+﻿.titulo-jumbo {
+    font-size: 10em;
+    font-weight: bold;
+    color: #f55e25
+}
+
+.subtitulo-jumbo {
+    font-size: 58px;
+    line-height: 68px;
+    color: #2e2e2e;
+    font-weight: bold;
+}
+
+.subtitulo-descricao {
+    font-weight: 300;
+    display: block;
+    color: #2e2e2e;
+}

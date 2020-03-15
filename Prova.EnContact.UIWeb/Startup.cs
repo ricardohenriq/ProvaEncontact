@@ -13,6 +13,7 @@ using Prova.EnContact.Mapeadores.Data;
 using Prova.EnContact.Servicos.Servicos;
 using Prova.EnContact.Interfaces.Interfaces.Servicos;
 using Prova.EnContact.Interfaces.Interfaces.Modelos;
+using Prova.EnContact.Compartilhado.Constantes;
 
 namespace Prova.EnContact.UIWeb
 {
@@ -28,8 +29,19 @@ namespace Prova.EnContact.UIWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            var bancoParaUso = Configuration.GetValue<string>("ConfiguracoesDaAplicacao:BancoDeDadosUtilizado");
+
+            if (string.Equals(bancoParaUso, ConstantesUtilitarios.SQL_SERVER, StringComparison.InvariantCultureIgnoreCase))
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            }
+            else if(string.Equals(bancoParaUso, ConstantesUtilitarios.SQLITE, StringComparison.InvariantCultureIgnoreCase))
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlite(Configuration.GetValue<string>("BDProducao:SQliteBDConnectionString"),
+                    x => x.SuppressForeignKeyEnforcement()));
+            }
 
             services.AddTransient(typeof(IRecadoServico<Recado>), typeof(RecadoServico));
             services.AddTransient(typeof(IAgrupamentoServico<Agrupamento>), typeof(AgrupamentoServico));
@@ -48,7 +60,8 @@ namespace Prova.EnContact.UIWeb
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Erros/Erro");
+                app.UseStatusCodePagesWithReExecute("/Erros/{0}");
             }
 
             app.UseStaticFiles();

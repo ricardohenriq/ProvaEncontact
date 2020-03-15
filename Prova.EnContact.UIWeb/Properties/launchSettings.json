@@ -13,14 +13,14 @@
       "launchBrowser": true,
       "launchUrl": "https://localhost:44371/",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Release"
       }
     },
     "Prova.EnContact.UIWeb": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Release"
       },
       "applicationUrl": "http://localhost:46752/"
     }

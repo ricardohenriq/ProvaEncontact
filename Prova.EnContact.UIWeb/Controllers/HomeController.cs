@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Prova.EnContact.Compartilhado.Constantes;
 using Prova.EnContact.Modelos.Modelos;
-using Prova.EnContact.Modelos.Modelos.VM;
 
 namespace Prova.EnContact.UIWeb.Controllers
 {
@@ -17,11 +16,6 @@ namespace Prova.EnContact.UIWeb.Controllers
             ViewData["Titulo"] = ConstantesPalavras.CADASTRAR_RECADO;
 
             return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
