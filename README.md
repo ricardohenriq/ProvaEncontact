@@ -21,7 +21,7 @@
 	
 	2.2 É possível pré cadastrar o exemplo dado no enunciado da prova, para isso altere a propriedade: __CarregarBancoDeExemploDaProva__ para "true", por padrão é "true".
 	
-	2.3 É possível alterar qual o tipo de banco de dados a ser utilizado, para isso altere a propriedade: __BancoDeDadosUtilizado__ para um dos valores: __SqlServer__ ou __SQLite__.
+	2.3 É possível alterar qual o tipo de banco de dados a ser utilizado, para isso altere a propriedade: __BancoDeDadosUtilizado__ para um dos valores: __SqlServer__ ou __SQLite__ por padrão é "Sqlite".
 	
 3. __[opcional]__ Caso selecione o banco __SqlServer__ será necessário criar um banco com o nome: __enContactBanco__, um usuário para o banco com nome: __enContactUsuario__ e senha: __enContactSenha__
 

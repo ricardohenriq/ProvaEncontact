@@ -41,7 +41,6 @@ namespace Prova.EnContact.UIWeb.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Cadastrar(Recado recado)
         {
             try
