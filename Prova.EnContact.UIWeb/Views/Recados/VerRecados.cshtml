@@ -15,7 +15,20 @@
                 <div class="tab">
                     @foreach (var agrupamento in Model)
                     {
-                        <button class="tablinks" id="@(agrupamento.IdUnico)">@agrupamento.RecadoInicial.Assunto</button>
+                        <button class="tablinks" id="@(agrupamento.IdUnico)">
+                            @agrupamento.RecadoInicial.Assunto
+                            <span class="badge badge-light pull-right">@agrupamento.RecadosResposta.Count</span>
+                        </button>
+
+                        @if (agrupamento.RecadosResposta.Count > 1)
+                        {
+                            <div data-id="@(agrupamento.IdUnico)" class="recados-agrupados">
+                                @foreach (var recado in agrupamento.RecadosResposta)
+                                {
+                                    <a href="#@(recado.IdUnico)" class="tabsublinks">@recado.Assunto</a>
+                                }
+                            </div>
+                        }
                     }
                 </div>
                 @foreach (var agrupamento in Model)

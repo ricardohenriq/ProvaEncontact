@@ -55,7 +55,8 @@ namespace Prova.EnContact.Modelos.Modelos
 
         private bool DeParaIgualAoDoRecadoInicial(IRecado recado)
         {
-            var resultado = recado.De.Equals(RecadoInicial.De) || recado.Para.Equals(RecadoInicial.De);
+            var resultado = recado.De.ToLowerInvariant().Equals(RecadoInicial.De.ToLowerInvariant()) 
+                || recado.Para.ToLowerInvariant().Equals(RecadoInicial.De.ToLowerInvariant());
 
             return resultado;
         }
@@ -70,10 +71,12 @@ namespace Prova.EnContact.Modelos.Modelos
 
         private bool RefereseAoMesmoAssuntoDoRecadoInicial(IRecado recado)
         {
-            var assunto = string.Copy(recado.Assunto);
+            var assunto = string.Copy(recado.Assunto).Trim().ToLowerInvariant();
             var resultado = _partesIgnoradasDoAssunto.Any(x => 
-                (assunto.StartsWith(x) && assunto.Replace(x, "").Trim().Equals(RecadoInicial.Assunto))
-                || (assunto.Trim().Equals(RecadoInicial.Assunto)));
+                (assunto.StartsWith(x.ToLowerInvariant()) && assunto.Replace(x.ToLowerInvariant(), "")
+                    .Trim()
+                    .Equals(RecadoInicial.Assunto.Trim().ToLowerInvariant()))
+                || (assunto.Equals(RecadoInicial.Assunto.Trim().ToLowerInvariant())));
 
             return resultado;
         }

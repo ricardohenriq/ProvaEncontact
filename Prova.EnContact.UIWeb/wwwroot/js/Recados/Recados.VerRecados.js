@@ -9,6 +9,7 @@
 
     this._$elTabLink = this._$el.find(".tablinks");
     this._$elTabConteudo = this._$el.find(".tabcontent");
+    this._$elRecadosAgrupados = this._$el.find(".recados-agrupados");
 
     this._inicialize();
 };
@@ -46,6 +47,9 @@ Recados_VerRecados.prototype = {
     _marcarAgrupamentoSelecionado: function (tabLinkClicado) {
         this._$elTabLink.removeClass("active");
         $(tabLinkClicado).addClass("active");
+
+        this._$elRecadosAgrupados.hide();
+        $("[data-id='" + $(tabLinkClicado).attr("id") + "']").show();
     },
 
     _exibaPrimeiroRecado: function () {
@@ -56,5 +60,8 @@ Recados_VerRecados.prototype = {
     _marquePrimeiraTab: function () {
         this._$elTabLink.removeClass("active");
         $(this._$elTabLink[0]).addClass("active");
+
+        this._$elRecadosAgrupados.hide();
+        $("[data-id='" + $(this._$elTabLink[0]).attr("id") + "']").show();
     }
 };

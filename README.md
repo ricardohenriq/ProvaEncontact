@@ -32,3 +32,7 @@
 6. É possível executar a aplicação somente executando o __IniciarAplicacao.bat__, ele irá baixar os pacotes, realizar o build e iniciar a aplicação (será exibido uma URL para ser acessada em qualquer browser)
 
 7. É possível executar os testes unitários e de integração ao executar os bats: __ExecutarTestesUnitario.bat__ e __ExecutarTestesIntegracao.bat__ respectivamente, ambos irão gerar seus arquivo __.trx__ padrão nas pastas: __./Prova.EnContact.TesteUnitario/TestResults__ e __./Prova.EnContact.TesteIntegracao/TestResults__ respectivamente.
+
+8. __[Observação]:__ Aplicação é "Case insensitive" ou seja: "Ricardo" é igual a "ricardo"
+
+9. __[Observação]:__ Aplicação realiza um "Trim" nos campos ou seja: " Este é o assunto  " é igual a "Este é o assunto" mas não é igual a " Este é o   assunto  "
