@@ -2,7 +2,6 @@
     float: left;
     background-color: #f1f1f1;
     width: 25%;
-    height: 300px;
 }
 
 .tab button {
@@ -47,12 +46,21 @@
      cursor: default
 }
 
-.tabsublinks,
+.tabsublinks {
+    display: block;
+    color: #f55e25;
+    text-decoration: none;
+    font-weight: bold;
+    padding-left: 30px
+}
+
+.tabsublinks-clicado,
 .tabsublinks:hover,
 .tabsublinks:active {
     display: block;
     color: #f55e25;
-    text-decoration:none;
-    font-weight:bold;
-    margin-left:30px
+    text-decoration: none;
+    font-weight: bold;
+    padding-left: 30px;
+    background-color: #2e2e2e
 }

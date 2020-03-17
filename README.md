@@ -19,7 +19,7 @@
 
 	2.1 É possível marcar que a __Data do Recado__ será visivel no cadastro do recado (para testar datas passadas), para isso altere a propriedade: __PermitirExibirCampoDataDoRecado__ para "true", por padrão é "false".
 	
-	2.2 É possível pré cadastrar o exemplo dado no enunciado da prova, para isso altere a propriedade: __CarregarBancoDeExemploDaProva__ para "true", por padrão é "true".
+	2.2 É possível pré cadastrar o exemplo dado no enunciado da prova, para isso altere a propriedade: __CarregarBancoDeExemploDaProva__ para "true", por padrão é "false".
 	
 	2.3 É possível alterar qual o tipo de banco de dados a ser utilizado, para isso altere a propriedade: __BancoDeDadosUtilizado__ para um dos valores: __SqlServer__ ou __SQLite__ por padrão é "Sqlite".
 	
@@ -32,6 +32,8 @@
 6. É possível executar a aplicação somente executando o __IniciarAplicacao.bat__, ele irá baixar os pacotes, realizar o build e iniciar a aplicação (será exibido uma URL para ser acessada em qualquer browser)
 
 7. É possível executar os testes unitários e de integração ao executar os bats: __ExecutarTestesUnitario.bat__ e __ExecutarTestesIntegracao.bat__ respectivamente, ambos irão gerar seus arquivo __.trx__ padrão nas pastas: __./Prova.EnContact.TesteUnitario/TestResults__ e __./Prova.EnContact.TesteIntegracao/TestResults__ respectivamente.
+
+9. Caso deseje executar a aplicação via algum dos arquivos __.bat__ NÃO se deve executa-los como administrador.
 
 8. __[Observação]:__ Aplicação é "Case insensitive" ou seja: "Ricardo" é igual a "ricardo"
 

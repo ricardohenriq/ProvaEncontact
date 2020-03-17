@@ -10,6 +10,8 @@
     this._$elTabLink = this._$el.find(".tablinks");
     this._$elTabConteudo = this._$el.find(".tabcontent");
     this._$elRecadosAgrupados = this._$el.find(".recados-agrupados");
+    this._$elRecados = this._$el.find(".tabsublinks");
+    this._classeRecadoClicado = "tabsublinks-clicado";
 
     this._inicialize();
 };
@@ -27,11 +29,20 @@ Recados_VerRecados.prototype = {
         this._$elTabLink.on("click", function () {
             _this._tabLinkClicado(this);
         });
+
+        this._$elRecados.on("click", function () {
+            _this._tabSubLinkClicado(this);
+        });
     },
 
     _preparaComponente: function () {
         this._exibaPrimeiroRecado();
         this._marquePrimeiraTab();
+    },
+
+    _tabSubLinkClicado: function (recado) {
+        this._$elRecados.removeClass(this._classeRecadoClicado);
+        $(recado).addClass(this._classeRecadoClicado);
     },
 
     _tabLinkClicado: function (tabLinkClicado) {
