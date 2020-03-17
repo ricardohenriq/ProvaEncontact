@@ -37,4 +37,4 @@
 
 8. __[Observação]:__ Aplicação é "Case insensitive" ou seja: "Ricardo" é igual a "ricardo"
 
-9. __[Observação]:__ Aplicação realiza um "Trim" nos campos ou seja: " Este é o assunto  " é igual a "Este é o assunto" mas não é igual a " Este é o   assunto  "
+9. __[Observação]:__ Aplicação realiza um "Trim" nos assunto a título de comparação ou seja: " Este é o assunto  " é igual a "Este é o assunto" mas não é igual a " Este é o   assunto  " mas no banco será salvo o assunto da forma como o usuário inseriu.
