@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Prova.EnContact.Interfaces.Interfaces.Modelos
 {
-    public interface IRecado : IObjetoPersistenteId, IObjetoFilho<Guid>
+    public interface IRecado : IObjetoPersistenteId, IObjetoFilho<Guid>, ICloneDescompartilhado<IRecado>
     {
         string De { get; set; }
 

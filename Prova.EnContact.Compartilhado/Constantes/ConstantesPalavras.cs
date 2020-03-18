@@ -15,11 +15,13 @@ namespace Prova.EnContact.Compartilhado.Constantes
         public const string ENT_NAO_ENCONTRADA = "Entidade com identificador: '{0}', não foi encontrada no banco.";
         public const string DT_RECADO = "Data do Recado";
         public const string DE = "De";
+        public const string EDITAR = "Editar";
         public const string PARA = "Para";
         public const string MENSAGEM = "Mensagem";
         public const string ASSUNTO = "Assunto";
         public const string VER_RECADOS = "Ver recados";
         public const string CADASTRAR_RECADO = "Cadastrar recado";
+        public const string EDITAR_RECADO = "Editar recado";
         public const string SALVAR = "Salvar";
         public const string PROVA_ENCONTACT = "Prova - enContact";
         public const string ENCONTACT = "enContact";
@@ -28,6 +30,7 @@ namespace Prova.EnContact.Compartilhado.Constantes
         public const string CAMPO_OBRIGATORIO = "Campo '{0}' é obrigatório";
         public const string TAMANHO_MAXIMO = "'{0}' deve ter no máximo {1} caracteres";
         public const string RECADO_CADASTRADO_SUCESSO = "O Recado foi cadastrado com sucesso!";
+        public const string RECADO_EDITADO_SUCESSO = "O Recado foi editado com sucesso!";
         public const string ERRO_505 = "Versão HTTP não Suportada";
         public const string ERRO_426 = "Upgrade Obrigatório";
         public const string ERRO_415 = "Tipo de Mídia não suportado";

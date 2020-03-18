@@ -10,5 +10,7 @@ namespace Prova.EnContact.Interfaces.Interfaces.Servicos
         where T : IObjetoPersistenteId
     {
         void SalvarRecado(IRecado recado);
+
+        void EditarRecado(IRecado recado);
     }
 }

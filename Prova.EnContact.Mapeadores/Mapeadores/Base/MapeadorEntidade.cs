@@ -104,31 +104,38 @@ namespace Prova.EnContact.Mapeadores.Mapeadores.Base
             }
         }
 
-        public virtual void AdicionarFilhos<U>(ApplicationDbContext contexto, U id, IEnumerable<IObjetoFilho<U>> filhos)
+        public virtual void Excluir(Guid id)
         {
-            foreach (var filho in filhos)
+            using (var transacao = _contexto.Database.BeginTransaction())
             {
-                contexto.Entry(filho).State = EntityState.Detached;
-                filho.IdPai = id;
+                try
+                {
+                    var model = _contexto.Set<T>().FirstOrDefault(x => x.IdUnico == id);
+
+                    if (model == null)
+                    {
+                        throw new EntidadeNaoEncontrada(string.Format(ConstantesPalavras.ENT_NAO_ENCONTRADA, id.ToString()));
+                    }
+
+                    _contexto.Remove(model);
+                    _contexto.SaveChanges();
+                    transacao.Commit();
+                }
+                catch (EntidadeNaoEncontrada ex)
+                {
+                    transacao.Rollback();
+
+                    Debug.WriteLine(string.Format(ConstantesPalavras.ERRO, ex.Message));
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    transacao.Rollback();
+
+                    Debug.WriteLine(string.Format(ConstantesPalavras.ERRO, ex.Message));
+                    throw;
+                }
             }
-
-            contexto.AddRange(filhos);
-            contexto.SaveChanges();
-        }
-
-        public virtual void DeletarFilhos<U, V>(ApplicationDbContext contexto, V id)
-            where U : ObjetoPersistenteId, IObjetoFilho<V>
-        {
-            var filhos = contexto.Set<U>().AsNoTracking()
-                .Where(x => x.IdPai.Equals(id)).ToList();
-
-            foreach(var filho in filhos)
-            {
-                contexto.Entry(filho).State = EntityState.Detached;
-            }
-
-            contexto.Set<U>().RemoveRange(filhos);
-            contexto.SaveChanges();
         }
     }
 }

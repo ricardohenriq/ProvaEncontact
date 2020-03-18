@@ -64,3 +64,13 @@
     padding-left: 30px;
     background-color: #2e2e2e
 }
+
+.btn-laranja {
+    color: #fff;
+    background-color: #f55e25;
+    border-color: #f44c0d;
+}
+
+.btn-laranja:hover {
+    color: #fff;
+}

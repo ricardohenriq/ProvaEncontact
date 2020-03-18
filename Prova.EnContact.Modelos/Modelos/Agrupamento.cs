@@ -41,6 +41,14 @@ namespace Prova.EnContact.Modelos.Modelos
             return resultado;
         }
 
+        public bool RecadoPertenceAoAgrupamantoEdicao(IRecado recado)
+        {
+            var resultado = RecadoInicial != null && DeParaIgualAoDoRecadoInicial(recado)
+                && RecadoInicialDentroDoPrazoDeCarenciaDoAtendimentoEmMesesEdicao(recado)
+                && RefereseAoMesmoAssuntoDoRecadoInicialEdicao(recado);
+
+            return resultado;
+        }
         public IList<IRecado> ObtenhaListaDeRecados()
         {
             return RecadosResposta.OrderBy(x => x.DataCriacao).Cast<IRecado>().ToList();
@@ -57,6 +65,14 @@ namespace Prova.EnContact.Modelos.Modelos
         {
             var resultado = recado.De.ToLowerInvariant().Equals(RecadoInicial.De.ToLowerInvariant()) 
                 || recado.Para.ToLowerInvariant().Equals(RecadoInicial.De.ToLowerInvariant());
+
+            return resultado;
+        }
+
+        private bool RecadoInicialDentroDoPrazoDeCarenciaDoAtendimentoEmMesesEdicao(IRecado recado)
+        {
+            var resultado = (RecadoInicial.DataCriacao.Date.AddMonths(-_carenciaEmMeses) < recado.DataCriacao.Date) 
+                && (RecadoFinal.DataCriacao.Date.AddMonths(_carenciaEmMeses) > recado.DataCriacao.Date);
 
             return resultado;
         }
@@ -78,6 +94,24 @@ namespace Prova.EnContact.Modelos.Modelos
                     .Equals(RecadoInicial.Assunto.Trim().ToLowerInvariant()))
                 || (assunto.Equals(RecadoInicial.Assunto.Trim().ToLowerInvariant())));
 
+            return resultado;
+        }
+
+        private bool RefereseAoMesmoAssuntoDoRecadoInicialEdicao(IRecado recado)
+        {
+            var assunto = string.Copy(recado.Assunto).Trim().ToLowerInvariant();
+
+            foreach (var ignorado in _partesIgnoradasDoAssunto)
+            {
+                if (assunto.StartsWith(ignorado))
+                {
+                    assunto = assunto.Replace(ignorado, "");
+                    break;
+                }
+            }
+
+            var resultado = _partesIgnoradasDoAssunto.Any(x => RecadoInicial.Assunto.ToLowerInvariant().Replace(x, "").Trim()
+                .Equals(assunto.Trim()));
             return resultado;
         }
 

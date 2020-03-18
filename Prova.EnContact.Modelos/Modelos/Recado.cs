@@ -39,5 +39,26 @@ namespace Prova.EnContact.Modelos.Modelos
         {
             DataCriacao = DateTime.Now;
         }
+
+        public IRecado CloneDescompartilhado()
+        {
+            return Clone() as Recado;
+        }
+
+        public object Clone()
+        {
+            var clone = new Recado();
+            clone.Agrupamento = Agrupamento;
+            clone.Assunto = string.Copy(Assunto);
+            clone.DataAlteracao = new DateTime(DataAlteracao.Year, DataAlteracao.Month, DataAlteracao.Day);
+            clone.DataCriacao = new DateTime(DataCriacao.Year, DataCriacao.Month, DataCriacao.Day);
+            clone.De = string.Copy(De);
+            clone.IdPai = IdPai;
+            clone.IdUnico = IdUnico;
+            clone.Mensagem = string.Copy(Mensagem);
+            clone.Para = string.Copy(Mensagem);
+
+            return clone;
+        }
     }
 }

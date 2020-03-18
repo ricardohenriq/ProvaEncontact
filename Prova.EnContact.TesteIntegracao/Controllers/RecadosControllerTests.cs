@@ -99,5 +99,81 @@ namespace Prova.EnContact.TesteIntegracao.Controllers
             Assert.Equal(1, agrupamentos[3].ObtenhaListaDeRecados().Count);
             Assert.Equal(agrupamentos[3].ObtenhaListaDeRecados().Select(x => x.Assunto).ToArray(), new string[] { "Primeiro recado" });
         }
+
+        [Fact]
+        public void EditarCriandoUmNovoAgrupamentoSucessoTest()
+        {
+            _controllerFixture.RestauraBanco();
+
+            var recados = GeradorDeEntidadesMock.ObtenhaRecadosMock();
+            foreach (var recado in recados)
+            {
+                _controller.Cadastrar((Recado)recado);
+            }
+
+            var primeiroRecado = recados.First().CloneDescompartilhado();
+            primeiroRecado.De = "BELTRANO";
+            primeiroRecado.Para = "BELTRANO";
+
+            _controller.Editar((Recado)primeiroRecado);
+
+            var resultado = _controller.VerRecados();
+            var viewResult = Assert.IsType<ViewResult>(resultado);
+            var agrupamentos = Assert.IsAssignableFrom<IList<Agrupamento>>(viewResult.ViewData.Model);
+
+            Assert.Equal(5, agrupamentos.Count);
+
+            Assert.Equal(5, agrupamentos[0].ObtenhaListaDeRecados().Count);
+            Assert.Equal(agrupamentos[0].ObtenhaListaDeRecados().Select(x => x.Assunto).ToArray(),
+                new string[]
+                {
+                    "respondendo: Primeiro recado",
+                    "complementando: Primeiro recado",
+                    "referente: Primeiro recado",
+                    "Primeiro recado",
+                    "Primeiro recado"
+                });
+
+            Assert.Equal(1, agrupamentos[4].ObtenhaListaDeRecados().Count);
+            Assert.Equal(agrupamentos[4].ObtenhaListaDeRecados().Select(x => x.Assunto).ToArray(), new string[] { "Primeiro recado" });
+        }
+
+        [Fact]
+        public void EditarExcluindoUmAgrupamentoSucessoTest()
+        {
+            _controllerFixture.RestauraBanco();
+
+            var recados = GeradorDeEntidadesMock.ObtenhaRecadosMock();
+            foreach (var recado in recados)
+            {
+                _controller.Cadastrar((Recado)recado);
+            }
+
+            var primeiroRecado = recados.First(x => x.Assunto.Equals("Segundo recado")).CloneDescompartilhado();
+            primeiroRecado.Assunto = "Primeiro recado";
+            primeiroRecado.De = "Fulano";
+            primeiroRecado.Para = "Ciclano";
+
+            _controller.Editar((Recado)primeiroRecado);
+
+            var resultado = _controller.VerRecados();
+            var viewResult = Assert.IsType<ViewResult>(resultado);
+            var agrupamentos = Assert.IsAssignableFrom<IList<Agrupamento>>(viewResult.ViewData.Model);
+
+            Assert.Equal(3, agrupamentos.Count);
+
+            Assert.Equal(7, agrupamentos[0].ObtenhaListaDeRecados().Count);
+            Assert.Equal(agrupamentos[0].ObtenhaListaDeRecados().Select(x => x.Assunto).ToArray(),
+                new string[]
+                {
+                    "Primeiro recado",
+                    "respondendo: Primeiro recado",
+                    "Primeiro recado",
+                    "complementando: Primeiro recado",
+                    "referente: Primeiro recado",
+                    "Primeiro recado",
+                    "Primeiro recado"
+                });
+        }
     }
 }

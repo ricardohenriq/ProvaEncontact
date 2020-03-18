@@ -1,7 +1,9 @@
 ﻿@model Recado
 
 <div class="container-recado" id="@Model.IdUnico">
-    <h3 class="titulo-recado">@Model.Assunto</h3>
+    <h3 class="titulo-recado">@Model.Assunto 
+        <a asp-action="Editar" asp-controller="Recados" asp-route-id="@Model.IdUnico" class="btn btn-laranja" aria-label="@ConstantesPalavras.EDITAR"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+    </h3>
 
     <div class="form-group row">
         <label asp-for="DataCriacao" class="col-sm-2 recado-label">@ConstantesPalavras.DT_RECADO</label>

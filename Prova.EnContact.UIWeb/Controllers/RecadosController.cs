@@ -40,6 +40,38 @@ namespace Prova.EnContact.UIWeb.Controllers
             return View(new Recado());
         }
 
+        public ActionResult Editar(Guid id)
+        {
+            var recado = _recadoServico.ObtenhaPorId(id);
+
+            ViewData["Titulo"] = ConstantesPalavras.EDITAR_RECADO;
+            ViewData["PermitirDataRetroativa"] = _permitirExibirCampoDataDoRecadoParaDataRetroativa;
+            return View(recado);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(Recado recado)
+        {
+            try
+            {
+                ViewData["Titulo"] = ConstantesPalavras.EDITAR_RECADO;
+
+                if (ModelState.IsValid)
+                {
+                    _agrupamentoServico.EditarRecado(recado);
+                    MensagemDeStatus = ConstantesPalavras.RECADO_EDITADO_SUCESSO;
+                    return RedirectToAction(nameof(VerRecados));
+                }
+
+                return View(nameof(Editar), recado);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(string.Format(ConstantesPalavras.ERRO, ex.Message));
+                throw;
+            }
+        }
+
         [HttpPost]
         public ActionResult Cadastrar(Recado recado)
         {
@@ -67,6 +99,7 @@ namespace Prova.EnContact.UIWeb.Controllers
         {
             try
             {
+                ViewData["Mensagem"] = MensagemDeStatus;
                 ViewData["Titulo"] = ConstantesPalavras.VER_RECADOS;
                 var recados = _agrupamentoServico.ObtenhaTodos();
                 return View(recados);
