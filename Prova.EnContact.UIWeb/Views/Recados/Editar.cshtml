@@ -1,0 +1,74 @@
+﻿@model Recado
+
+@{
+    var permitirDataRetroativa = (bool)(ViewData["PermitirDataRetroativa"] ?? false);
+}
+
+@section StyleSheets{
+    <link rel="stylesheet" href="~/css/Recados/Recados.Cadastrar.css" />
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="title text-center titulo-cadastro">@ConstantesPalavras.EDITAR_RECADO</h2>
+
+            <form asp-action="Editar" asp-controller="Recados" autocomplete="off">
+                <input asp-for="IdUnico" type="hidden">
+
+                @if (permitirDataRetroativa)
+                {
+                <div class="form-group row">
+                    <label asp-for="DataCriacao" class="col-sm-2 recado-label">@ConstantesPalavras.DT_RECADO</label>
+                    <div class="col-sm-10">
+                        <input name="__DataCriacao" asp-for="DataCriacao" type="date" class="form-control" disabled>
+                        <input asp-for="DataCriacao" type="hidden">
+                    </div>
+                </div>
+                }
+                else
+                {
+                    <input asp-for="DataCriacao" type="hidden">
+                }
+
+                <div class="form-group row">
+                    <label asp-for="De" class="col-sm-2 recado-label">@Html.DisplayNameFor(x => x.De)</label>
+                    <div class="col-sm-10">
+                        <input asp-for="De" type="text" class="form-control">
+                        <span asp-validation-for="De" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="Para" class="col-sm-2 recado-label">@Html.DisplayNameFor(x => x.Para)</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Para" type="text" class="form-control">
+                        <span asp-validation-for="Para" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="Assunto" class="col-sm-2 recado-label">@Html.DisplayNameFor(x => x.Assunto)</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Assunto" type="text" class="form-control">
+                        <span asp-validation-for="Assunto" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label asp-for="Mensagem" class="col-sm-2 recado-label">@Html.DisplayNameFor(x => x.Mensagem)</label>
+                    <div class="col-sm-10">
+                        <textarea asp-for="Mensagem" type="text" class="form-control" rows="6"></textarea>
+                        <span asp-validation-for="Mensagem" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <input type="submit" name="submit" class="btn btn-laranja pull-right" value="@ConstantesPalavras.SALVAR" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
